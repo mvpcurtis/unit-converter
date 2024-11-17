@@ -37,22 +37,26 @@ const poundToKilo = function (num) {
 };
 
 const startConversion = function () {
-  const value = inputEl.value;
+  const value = Number(inputEl.value);
+  document.querySelector('#error').style.display = 'none';
+  if (!isNaN(value) && value > 0) {
+    lengthParaEl.textContent = `
+        ${value} meters = ${meterToFeet(value).toFixed(2)} feet | 
+        ${value} feet = ${feetToMeter(value).toFixed(2)} meters
+    `;
 
-  lengthParaEl.textContent = `
-    ${value} meters = ${meterToFeet(value).toFixed(2)} feet | 
-    ${value} feet = ${feetToMeter(value).toFixed(2)} meters
-`;
+    volumeParaEl.textContent = `
+        ${value} liters = ${literToGallon(value).toFixed(2)} gallons |
+        ${value} gallons = ${gallonToLiter(value).toFixed(2)} liters
+    `;
 
-  volumeParaEl.textContent = `
-    ${value} liters = ${literToGallon(value).toFixed(2)} gallons |
-    ${value} gallons = ${gallonToLiter(value).toFixed(2)} liters
-`;
-
-  massParaEl.textContent = `
-    ${value} kilos = ${kiloToPound(value).toFixed(2)} pounds |
-    ${value} pounds = ${poundToKilo(value).toFixed(2)} kilos
-`;
+    massParaEl.textContent = `
+        ${value} kilos = ${kiloToPound(value).toFixed(2)} pounds |
+        ${value} pounds = ${poundToKilo(value).toFixed(2)} kilos
+    `;
+  } else {
+    document.querySelector('#error').style.display = 'block';
+  }
 };
 
 convBtn.addEventListener('click', startConversion);
