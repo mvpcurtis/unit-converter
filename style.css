@@ -113,7 +113,7 @@ main > .body {
 .body > div {
   background-color: var(--white);
   padding: 2em;
-  margin: 1em 0;
+  margin: 0.5em 0;
   width: 100%;
 }
 
